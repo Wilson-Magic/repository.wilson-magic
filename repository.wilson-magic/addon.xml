@@ -1,5 +1,5 @@
-<?xml versionhttps://github.com/Wilson-Magic="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.wilson-magic" name="Wilson Magic's Kodi Addon Repo" version="0.0.2" provider-name="Wilson Magic">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.wilson-magic" name="Wilson Magic's Kodi Addon Repo" version="0.0.3" provider-name="Wilson Magic">
 	<extension point="xbmc.addon.repository" name="Wilson Magic's Kodi Addon Repo">
 		<dir>
             <info compressed="false">https://raw.githubusercontent.com/Wilson-Magic/repository.wilson-magic/master/zips/addons.xml</info>
