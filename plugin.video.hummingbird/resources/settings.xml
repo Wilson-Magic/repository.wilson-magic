@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="General">
+        <setting type="lsep" label="Titles"/>
+            <setting type="select" id="show.titles" label="Show Title Type" default="Canon" values="Canon|English|Romaji|Kanji"/>
+            <setting type="select" id="ep.titles" label="Episode Title Type" default="Canon" values="Canon|English|Romaji|Kanji"/>
+            <setting type="bool" id="ep.number" label="Show Episode Number" default="true"/>
+        <setting type="lsep" label="View Types"/>
+            <setting type="bool" id="force.viewtype" label="Force View Type" default="false"/>
+            <setting type="select" id="main.viewtype" label="Basic Menu View Type" hidden="eq(-1, 'false')" default="Wide List" values="List|Poster|Icon Wall|Wide List|Wall|Banner|Fanart"/>
+            <setting type="select" id="show.viewtype" label="Basic Menu View Type" hidden="eq(-2, 'false')" default="Wide List" values="List|Poster|Icon Wall|Wide List|Wall|Banner|Fanart"/>
+            <setting type="select" id="ep.viewtype" label="Basic Menu View Type" hidden="eq(-3, 'false')" default="Wide List" values="List|Poster|Icon Wall|Wide List|Wall|Banner|Fanart"/>
+        <setting type="lsep" label="Miscellaneous"/>
+            <setting type="bool" id="general.enablememes" label="Enable Memes" default="false"/>
+            <!--HIDDEN-->
+            <setting type="text" id="anime.lastwatched" visible="false"/>
+    </category>
+    <category label="External APIs">
+        <setting type="lsep" label="FanartTV"/>
+            <setting type="bool" id="art.fanart" label="Enable Fanart" default="false"/>
+            <setting type="text" id="key.fanart" label="FanartTV API Key"/>
+            <setting type="select" id="fanart.lang" label="Fanart Language" default="Japanese" values="Japanese|English"/>
+        <setting type="lsep" label="WonderfulSubs"/>
+            <setting type="text" id="ws.username" label="Username"/>
+            <setting type="text" id="ws.password" label="Password"/>
+            <setting type="text" id="ws.token" visible="false"/>     
+    </category>
+    <category label="Accounts">
+        <setting type="lsep" label="Kitsu"/>
+            <setting type="text" id="kitsu.user" label="Username"/>
+            <setting type="text" id="kitsu.email" label="Email"/>
+            <setting type="text" id="kitsu.pass" label="Password"/>
+            <setting type="action" label="Sign In" option="close" action="RunPlugin(plugin://plugin.video.hummingbird/?action=kitsuLogin)"/>
+            <setting type="bool" id="kitsu.track" label="Track with Kitsu?" default="true"/>
+            <!--HIDDEN-->
+            <setting type="text" id="kitsu.userid" visible="false"/>
+            <setting type="text" id="kitsu.access" visible="false"/>
+            <setting type="bool" id="kitsu.18plus" visible="false" default="false"/>
+            <setting type="text" id="kitsu.refresh" visible="false"/>
+            <setting type="text" id="kitsu.create" visible="false"/>
+            <setting type="text" id="kitsu.expiry" visible="false"/>
+        <setting type="lsep" label="MyAnimeList"/>
+            <setting type="text" id="mal.user" label="Username"/>
+            <setting type="text" id="mal.pass" label="Password"/>
+            <setting type="action" label="Sign In" option="close" action="RunPlugin(plugin://plugin.video.hummingbird/?action=malLogin)"/>            
+            <setting type="bool" id="mal.track" label="Track with MAL?" default="true"/>
+            <!--HIDDEN-->
+            <setting type="text" id="mal.logsess" visible="false"/>
+            <setting type="text" id="mal.sessionid" visible="false"/>            
+        <setting type="lsep" label="AniList"/>
+            <setting type="text" id="ani.user" label="Username"/>
+            <setting type="text" id="ani.pass" label="Access Token"/>
+            <setting type="action" label="Sign In" option="close" action="RunPlugin(plugin://plugin.video.hummingbird/?action=anilistLogin)"/>
+            <setting type="bool" id="ani.track" label="Track with AniList?" default="true"/>
+            <!--HIDDEN-->
+            <setting type="text" id="ani.userid" visible="false"/>
+    </category>
+    <category label="Scraping">
+        <setting type="lsep" label="Basic"/>
+            <setting type="slider" id="scraping.timeout" label="Max Scrape Time" default="60" range="1,1,60" option="int"/>
+        <setting type="lsep" label="Pre-emptive Termination"/>       
+            <setting type="bool" id="preemptive.enable" label="Enable Pre-emptive Termination" default="false"/>
+            <setting type="select" id="preemptive.resolution" label="Resolution" default="1080" values="360|480|720|1080|2160"/>
+            <setting type="select" id="preemptive.audiotype" label="Audio Type" default="Sub" values="Sub|Dub|Any"/>
+            <setting type="slider" id="preemptive.limit" label="Minimum number of sources" default="5" range="1,1,20" option="int"/>
+            <setting type="select" id="preemptive.sourcetype" label="Source Type" default="Any" values="Any|Torrent|Hoster"/>
+    </category>
+    <category label="Scrapers">
+        <setting type="lsep" label="Hosters"/>
+            <setting type="bool" id="animefever" label="AnimeFever" default="true"/>
+            <setting type="bool" id="animeflix" label="AnimeFlix" default="true"/>
+            <setting type="bool" id="animepahe" label="AnimePahe" default="true"/>
+            <setting type="bool" id="animetwist" label="AnimeTwist" default="true"/>
+            <setting type="bool" id="saiko" label="Saiko" default="true"/>
+            <setting type="bool" id="wonderfulsubs" label="WonderfulSubs" default="true"/>
+    </category>
+    <category label="Menu Sorting">
+        <setting type="lsep" label="Menu"/>
+            <setting type="bool" id="ep.reverse" label="Reverse Episode List" default="false"/>
+        <setting type="lsep" label="Menu Sorting"/>
+            <setting type="select" id="airing.sort" label="Top Airing Sort" default="Popularity" values="Popularity|-Popularity|Rating|-Rating|Date|-Date"/>
+            <setting type="select" id="upcoming.sort" label="Trending Sort" default="Popularity" values="Popularity|-Popularity|Rating|-Rating|Date|-Date"/>
+            <setting type="select" id="search.sort" label="Search Sort" default="Popularity" values="Popularity|-Popularity|Rating|-Rating|Date|-Date"/>
+        <setting type="lsep" label="Account Sorting"/>
+            <setting type="select" id="current.sort" label="Currently Watching Sort" default="Update Date" values="Update Date|-Update Date|Progress|-Progress|Alphabetical"/>
+            <setting type="select" id="finished.sort" label="Finished Sort" default="Update Date" values="Update Date|-Update Date|Progress|-Progress|Alphabetical"/>
+            <setting type="select" id="dropped.sort" label="Dropped Sort" default="Update Date" values="Update Date|-Update Date|Progress|-Progress|Alphabetical"/>
+            <setting type="select" id="hold.sort" label="On Hold Sort" default="Update Date" values="Update Date|-Update Date|Progress|-Progress|Alphabetical"/>
+            <setting type="select" id="planned.sort" label="Planned Sort" default="Update Date" values="Update Date|-Update Date|Progress|-Progress|Alphabetical"/>
+    </category>
+    <category label="Source Sorting">    
+        <setting type="lsep" label="Audio"/>
+            <setting type="select" id="sort.exclusion" label="Audio Exclusion" default="None" values="None|Sub|Dub"/>
+            <setting type="select" id="sort.audio" label="Audio Sort" default="Sub" values="Sub|Dub"/>
+        <setting type="lsep" label="Quality"/>
+            <setting type="select" id="sort.minq" label="Minimum Quality" default="360" values="360|480|720|1080|2160"/>
+            <setting type="select" id="sort.maxq" label="Maximum Quality" default="2160" values="360|480|720|1080|2160"/>
+        <setting type="lsep" label="Hosts"/>
+            <setting type="bool" id="legit.prefer" label="Prefer Legitimate Sources" default="false"/>
+            <setting type="select" id="site.prefer" label="Prefer Specific Scraper" default="None" values="None|4Anime|AnimeFlix|AnimePahe|AnimeTwist|WonderfulSubs"/>        
+    </category>
+    <category label="Playback">
+        <setting type="lsep" label="Basic"/>
+            <setting type="select" id="play.type" label="Playback Type" default="Autoplay" values="Autoplay|Source Select"/>
+        <setting type="lsep" label="SmartPlay"/>
+            <setting type="bool" id="smartplay.enable" label="Enable SmartPlay" default="false"/>
+    </category>
+    <category label="Tools">
+        <setting type="lsep" label="Basic"/>
+            <setting type="action" label="Clear Cache" option="close" action="RunPlugin(plugin://plugin.video.hummingbird/?action=clearCache)"/>
+            <setting type="action" label="Open ResolveURL Settings..." option="close" action="RunPlugin(plugin://plugin.video.hummingbird/?action=resolveurl)"/>
+            <setting type="action" label="Open InputStream Adaptive Settings..." option="close" action="RunPlugin(plugin://plugin.video.hummingbird/?action=iadaptive)"/>
+        <setting type="lsep" label="Advanced"/>
+            <setting type="action" label="Admin Commands" option="close" action="RunPlugin(plugin://plugin.video.hummingbird/?action=adminCommands)"/>
+    </category>
+</settings>

@@ -1,2 +1,2 @@
-# repository.wilson-magic
-Addons by Wilson Magic.
+# Wilson Magic's Repository
+Bits, odds and ends.

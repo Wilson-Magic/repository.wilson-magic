@@ -1,0 +1,212 @@
+Initial Alpha Releases
+
+UPDATE 0.0.1 - Initial Build
+- Simple Kitsu Explorer
+- Incredibly Broken LOL
+
+UPDATE 0.0.2
+- Set up playback
+- Still incredibly broken
+
+UPDATE 0.0.3
+- Add AnimePahe
+- Make Scraper sort of work lol
+- Still broken but sort of usable
+
+UPDATE 0.0.4
+- Add Dialogs to scraping
+- Add some metadata to player
+
+UPDATE 0.0.5
+- Fix playback
+- Add new settings for playback
+
+UPDATE 0.0.6
+- Add Caching
+- So some modifications to the scraper
+- Add animetwist
+
+UPDATE 0.0.7
+- Add shit for accounts
+- Add Admin commands
+
+UPDATE 0.0.8
+- Fix Twist Resolving
+- Put __init__ back in after mysterious deletion
+
+UPDATE 0.0.9
+- Fix Playback
+
+UPDATE 0.0.10
+- Fix Admin Command String
+- Fix title error
+- Fix sort
+
+UPDATE 0.0.11
+- Re-add icon
+- Thread scraping
+- Fix misspelling
+- Add pre-emptive termination
+- Add animeflix
+
+UPDATE 0.0.12
+- Change to all episodes on one page
+- Add reverse sort option
+
+UPDATE 0.0.13
+- Make Source Selection its own file
+- Thread episodes
+- link tester
+
+UPDATE 0.0.14
+- Set up accounts for SwagOtaku
+- Add FanartTV support
+
+UPDATE 0.0.15
+- Add missing mediatype
+- Add YouTube trailer support
+
+UPDATE 0.0.16
+- Clean Up Setting
+- Fix Viewtypes
+
+UPDATE 0.0.17
+- Add some shite to shite
+
+UPDATE 0.1.0
+- Rewrite settings
+- Remove commented out lines
+- Fixed Original title bug
+- FIxed search error when there is no year
+
+UPDATE 0.1.1
+- Added adaptive stream support
+- Fixed AnimeFlix somewhat
+- Added WonderfulSubs
+ 
+UPDATE 0.1.2
+- Fixed the WonderfulSubs message
+- Added more depth to adaptive sorting
+- Added framework for further sort preferences
+- Fixed AnimeFlix somewhat again
+
+UPDATE 0.1.3
+- RIP RapidVideo, moved WonderfulSubs to in_progress
+- Added 4anime Scraper
+
+UPDATE 0.1.4
+- Fixed WonderfulSubs using Swags method
+
+UPDATE 0.1.5
+- Updated the cloudflare scraper
+- Added SmartPlay framework
+- Speeded up addon massively
+
+UPDATE 0.1.6
+- Fixed Anime Twist resolving
+- Removed SmartPlay framework (kodi is shite)
+
+UPDATE 0.2.0
+- Removed WonderfulSubs warning
+- Added logging in for Kitsu, MyAnimeList and AniList
+- Removed R18 ratings as it seems that nothing is rated with it
+- Added Watchlist for Kitsu, MyAnimeList and AniList (Current, Finished, Dropped, Planned, On Hold)
+- Fixed 18+ listings not showing when signed into an adult Kitsu account
+- Removed unnecessary logging
+- Revamped settings for accounts section
+- Added tracking (scrobbling of anime played in the addon to your Kitsu, MyAnimeList and AniList lists)
+ 
+UPDATE 0.2.1
+- Added the 'Last Watched' menu item that was present in Masterani Redux
+- Fixed an issue where playback would fail if attempting to watch a movie when tracking your watch habits
+
+UPDATE 0.3.0
+- Changed menu structure to be closer to an anime Seren like the addon originally was
+- Added sorting options for a lot of menus including account menus
+- Added advanced search
+- Changed Top by Season page to only go back to 1980 (originally went to 1907)
+- Made fanart work a little better (I'm working on rewriting it to make it even better)
+- Fixed logging when there is an issue with a kitsu request (It actually logs it now)
+- Addon now obtains MyAnimeList titles as well for anime if possible.
+- Made the addon be better at obtaining mappings
+- Fixed 4anime scraper (resolving doesn't work now though lol)
+- Made Animeflix scraper work much more reliably
+- Made Animepahe scraper work more reliably
+
+UPDATE 0.3.1
+- Updated FanartTV module to a new version that increases reliability
+- Small update to 4anime scraper in preparation for resolving
+- Fixed 4anime resolver 
+- Made animepahe work more reliably... again
+- Redone sorting added specific module
+- Simplified sorting settings
+- Split menu sorting and source sorting menus
+
+UPDATE 0.3.2
+- Fixed bug where the menus would be sorted according to popularity even when the setting was different
+- Fixed bug where cancelling advanced search wouldn't cancel and instead would just search for nothing instead
+- Fixed error where the next page wouldn't work when on Currently Airing or Upcoming menus
+- Removed items that were in title search but not available elsewhere
+- Added framework for installable providers
+- Added air date to episodes
+- Finished code for franchise context menu
+- Added Franchise context menu... doesn't work though
+- Fixed bug where season searches would error out
+- Fixed WonderfulSubs KissAnime sources
+- Fixed source sorting, it now correctly sorts based on preferences
+
+UPDATE 0.3.3
+-Fixed source sorting again.
+-Fixed 4anime, it now doesn't pretend it's got a source when it doesn't
+
+UPDATE 0.3.4
+- Added icons to menus
+
+UPDATE 0.3.5
+- Added information to menus
+- Removed framework for installable providers, cant be arsed to do it lmao.
+- Made Anime Twist enabled by default again.
+
+UPDATE 0.3.6
+- Updated cloudscraper
+- Added JS Beautifier
+- Created a new way for mapping that is much better
+- Added a sort system, makes menus actually sorted the way they are supposed to be.
+
+UPDATE 0.3.7
+- Added ability to source select from context menu
+- Fixed AnimePahe resolving
+- Made WonderfulSubs work a bit better
+- Removed a bunch of unecessary logging
+
+UPDATE 0.4.0
+- Added SmartPlay
+- Added ability to play specifically subbed or dubbed from context menu
+- Fixed bug that prevented installation from correctly occuring
+
+UPDATE 0.4.1
+- Added 9Anime (No links resolve though. So it'll be off by default and probably shouldn't be used as of now)
+- Updated accounts section so that it scrobbles to the completed status upon watching the final episode, or if it's a movie.
+
+UPDATE 0.4.2
+- Added AnimeFever
+- Added Auto Subs for sources that provide subtitles (Animefever, and certain WonderfulSubs sources)
+
+UPDATE 0.4.3
+- Added service that relogs in to prevent error when kitsu session expires
+- Updated WonderfulSubs to work with new api version.
+- Added some extra things to WonderfulSubs to make it work a little better.
+- Removed some stupid tests that I accidently left in making all the menus much faster.
+- Removed 9Anime (rip that experiment, but maybe something soon?)
+- Removed useless files
+- Updated Cloudscraper
+- Changed mappings to add some redundancy to prevent errors. It works but it's slow as fuck.
+
+UPDATE 0.4.4
+- Added caching to accounts mappings.
+- Added threading to accounts for minimal speed increases on first load.
+
+UPDATE 0.4.5
+- Fixed AnimePahe (resolving now found to be broken.)
+- Added Saiko.vip
+- Removed 4anime
