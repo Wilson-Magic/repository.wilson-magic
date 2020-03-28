@@ -210,3 +210,6 @@ UPDATE 0.4.5
 - Fixed AnimePahe (resolving now found to be broken.)
 - Added Saiko.vip
 - Removed 4anime
+
+UPDATE 0.4.6
+- Fixed prefer scraper setting to correct values.

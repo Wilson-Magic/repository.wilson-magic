@@ -97,7 +97,7 @@
             <setting type="select" id="sort.maxq" label="Maximum Quality" default="2160" values="360|480|720|1080|2160"/>
         <setting type="lsep" label="Hosts"/>
             <setting type="bool" id="legit.prefer" label="Prefer Legitimate Sources" default="false"/>
-            <setting type="select" id="site.prefer" label="Prefer Specific Scraper" default="None" values="None|4Anime|AnimeFlix|AnimePahe|AnimeTwist|WonderfulSubs"/>        
+            <setting type="select" id="site.prefer" label="Prefer Specific Scraper" default="None" values="None|AnimeFever|AnimeFlix|AnimePahe|AnimeTwist|Saiko|WonderfulSubs"/>        
     </category>
     <category label="Playback">
         <setting type="lsep" label="Basic"/>
