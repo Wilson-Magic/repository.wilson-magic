@@ -542,12 +542,15 @@ class List:
                 action += '&source_select=true'
             if audioType != False:
                 action += '&audio_type=%s' % audioType
+                
+            try: duration = str(show['episode_length']*60)
+            except: duration = '22'
             
             item = {'plot': a['episodePlot'], 
                     'premiered': a['airdate'],
                     'year': a['year'], 
                     'mediatype': 'episode', 
-                    'duration': str(show['episode_length']*60)}
+                    'duration': duration}
             
             poster = a['thumbnail']
             

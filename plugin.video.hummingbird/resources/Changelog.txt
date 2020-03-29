@@ -213,3 +213,6 @@ UPDATE 0.4.5
 
 UPDATE 0.4.6
 - Fixed prefer scraper setting to correct values.
+
+UPDATE 0.4.7
+- Fixed bug where a show cannot show it's episodes if there was no episode duration given.
