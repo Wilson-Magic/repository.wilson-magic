@@ -22,14 +22,14 @@
             <setting type="select" id="fanart.lang" label="Fanart Language" default="Japanese" values="Japanese|English"/>
         <setting type="lsep" label="WonderfulSubs"/>
             <setting type="text" id="ws.username" label="Username"/>
-            <setting type="text" id="ws.password" label="Password"/>
+            <setting type="text" id="ws.password" label="Password" option="hidden"/>
             <setting type="text" id="ws.token" visible="false"/>     
     </category>
     <category label="Accounts">
         <setting type="lsep" label="Kitsu"/>
             <setting type="text" id="kitsu.user" label="Username"/>
             <setting type="text" id="kitsu.email" label="Email"/>
-            <setting type="text" id="kitsu.pass" label="Password"/>
+            <setting type="text" id="kitsu.pass" label="Password" option="hidden"/>
             <setting type="action" label="Sign In" option="close" action="RunPlugin(plugin://plugin.video.hummingbird/?action=kitsuLogin)"/>
             <setting type="bool" id="kitsu.track" label="Track with Kitsu?" default="true"/>
             <!--HIDDEN-->
@@ -41,7 +41,7 @@
             <setting type="text" id="kitsu.expiry" visible="false"/>
         <setting type="lsep" label="MyAnimeList"/>
             <setting type="text" id="mal.user" label="Username"/>
-            <setting type="text" id="mal.pass" label="Password"/>
+            <setting type="text" id="mal.pass" label="Password" option="hidden"/>
             <setting type="action" label="Sign In" option="close" action="RunPlugin(plugin://plugin.video.hummingbird/?action=malLogin)"/>            
             <setting type="bool" id="mal.track" label="Track with MAL?" default="true"/>
             <!--HIDDEN-->

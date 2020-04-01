@@ -22,20 +22,25 @@ class Mappings:
         self.id_list = []
 
     def get(self, site, id, return_site):
-        #Try Hato then Notify then just take the data
-        resp = requests.get('https://hato.malupdaterosx.moe/api/mappings/%s/anime/%s' % (site, id), headers={'User-Agent': tools.get_random_ua()})
-        load = json.loads(resp.content)
-        data = load['data']
         try:
-            notify = data['notify_id']
-            resp = requests.get('https://notify.moe/api/anime/%s' % notify)
+            resp = requests.get('https://arm.now.sh/api/v1/search?type=%s&id=%s' % (site, id))
             load = json.loads(resp.content)
-            mappings = load['mappings']
-            for a in mappings:
-                if a['service'] == self.return_sites[return_site]['notify']:
-                    return a['serviceId']
+            return load['services'][return_site]
         except:
-            return data[self.return_sites[return_site]['hato']]    
+            #Try Hato then Notify then just take the data
+            resp = requests.get('https://hato.malupdaterosx.moe/api/mappings/%s/anime/%s' % (site, id), headers={'User-Agent': tools.get_random_ua()})
+            load = json.loads(resp.content)
+            data = load['data']
+            try:
+                notify = data['notify_id']
+                resp = requests.get('https://notify.moe/api/anime/%s' % notify)
+                load = json.loads(resp.content)
+                mappings = load['mappings']
+                for a in mappings:
+                    if a['service'] == self.return_sites[return_site]['notify']:
+                        return a['serviceId']
+            except:
+                return data[self.return_sites[return_site]['hato']]    
             
     def get_thread(self, site, id, return_site):
         new_id = cache.hummingCache().cacheCheck(self.get, 8760, site, id, return_site)

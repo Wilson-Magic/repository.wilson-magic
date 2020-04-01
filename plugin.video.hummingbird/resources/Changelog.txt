@@ -216,3 +216,7 @@ UPDATE 0.4.6
 
 UPDATE 0.4.7
 - Fixed bug where a show cannot show it's episodes if there was no episode duration given.
+
+UPDATE 0.4.8
+- Fixed oversite where passwords are in plaintext.
+- Made mappings a tad faster for accounts.

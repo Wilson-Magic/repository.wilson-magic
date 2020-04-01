@@ -81,28 +81,36 @@ class Mappings:
                 self.trakt = attr['externalId']
         
     def getArm(self, id):
-        #Try Hato then Notify then just take the data
-        resp = requests.get('https://hato.malupdaterosx.moe/api/mappings/%s/anime/%s' % ('kitsu', id), headers={'User-Agent': tools.get_random_ua()})
-        load = json.loads(resp.content)
-        data = load['data']
         try:
-            notify = data['notify_id']
-            resp = requests.get('https://notify.moe/api/anime/%s' % notify)
+            resp = requests.get('https://arm.now.sh/api/v1/search?type=%s&id=%s' % (site, id))
             load = json.loads(resp.content)
-            mappings = load['mappings']
-            for a in mappings:
-                if a['service'] == 'anilist/anime':
-                    self.anilist = a['serviceId']
-                if a['service'] == 'myanimelist/anime':
-                    self.mal = a['serviceId']
-                if a['service'] == 'anidb/anime':
-                    self.anidb = a['serviceId']
-                if a['service'] == 'trakt/anime':
-                    self.trakt = a['serviceId']
+            self.anilist = load['services']['anilist']
+            self.anidb =  load['services']['anidb']
+            self.mal =  load['services']['mal']
         except:
-            self.anidb = data['anidb_id']
-            self.anilist = data['anilist_id']
-            self.mal = data['mal_id']
+            #Try Hato then Notify then just take the data
+            resp = requests.get('https://hato.malupdaterosx.moe/api/mappings/%s/anime/%s' % (site, id), headers={'User-Agent': tools.get_random_ua()})
+            load = json.loads(resp.content)
+            data = load['data']
+            try:
+                notify = data['notify_id']
+                resp = requests.get('https://notify.moe/api/anime/%s' % notify)
+                load = json.loads(resp.content)
+                mappings = load['mappings']
+                for a in mappings:
+                    if a['service'] == 'anilist/anime':
+                        self.anilist = a['serviceId']
+                    if a['service'] == 'myanimelist/anime':
+                        self.mal = a['serviceId']
+                    if a['service'] == 'anidb/anime':
+                        self.anidb = a['serviceId']
+                    if a['service'] == 'trakt/anime':
+                        self.trakt = a['serviceId']
+            except:
+                self.anidb = data['anidb_id']
+                self.anilist = data['anilist_id']
+                self.mal = data['mal_id']
+        
         
     def getTraktTitle(self):
         resp = requests.get(self.mal_link + '/anime/%s' % self.mal)
