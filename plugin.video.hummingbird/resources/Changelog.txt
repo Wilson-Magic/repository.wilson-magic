@@ -220,3 +220,7 @@ UPDATE 0.4.7
 UPDATE 0.4.8
 - Fixed oversite where passwords are in plaintext.
 - Made mappings a tad faster for accounts.
+
+UPDATE 0.5.0
+- Completely revamped the accounts section for speed and reliability (INSTANT ANILIST MENUS)
+- New menu icons (thanks to iCpryde)

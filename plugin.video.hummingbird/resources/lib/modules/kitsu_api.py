@@ -338,7 +338,7 @@ class KitsuBrowser:
         
         return show
         
-    def getListById(self, list):
+    def getListById(self, list, progress=None):
         items = []
         
         for a in list:
@@ -346,6 +346,11 @@ class KitsuBrowser:
             data = json.loads(resp)
             data = data['data']
             items.append(data)
+            
+        if progress != None:
+            items[0]['account_info'] = progress
+
+        tools.log(items)
 
         extracted_items = self.extract_items(items)
 
@@ -374,7 +379,7 @@ class KitsuBrowser:
 
         return self.extractedItems
         
-    def extract(self, item):
+    def extract(self, item, progress=None):
         dict = {}
         attributes = item['attributes']
         
@@ -399,8 +404,13 @@ class KitsuBrowser:
         
         year = ''
         
-        try: year = attributes['startDate'][:4]
-        except: year = attributes['tba']        
+        try: 
+            year = attributes['startDate'][:4]
+        except:
+            try:
+                year = attributes['tba']        
+            except:
+                year = 0000
         
         dict['mappings'] = cache.hummingCache().cacheCheck(mappings.Mappings().get, 24, dict['id'], attributes['subtype'], year)
         
@@ -488,7 +498,10 @@ class KitsuBrowser:
             try: dict['art']['poster'] = poster
             except: dict['art']['poster'] = None
             try: dict['art']['fanart'] = fanart
-            except: dict['art']['fanart'] = None        
+            except: dict['art']['fanart'] = None   
+
+        try: dict['account_info'] = item['account_info']
+        except: dict['account_info'] = None        
         
         self.remaining_threads.remove(item['attributes']['canonicalTitle'])  
         self.extractedItems.append(dict)

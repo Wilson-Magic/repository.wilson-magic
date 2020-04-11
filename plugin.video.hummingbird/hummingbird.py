@@ -17,6 +17,13 @@ actionArgs = params.get('actionArgs')
 source_select = params.get('source_select')
 audio_type = params.get('audio_type')
 smartplayCheck = params.get('smartplay')
+get_kitsu_item = params.get('get_anime_info')
+site = params.get('site')
+
+if get_kitsu_item == 'true':
+    get_kitsu_item = True
+else:
+    get_kitsu_item = False
 
 if page is None:
     page = 1
@@ -150,11 +157,36 @@ if action == 'franchise':
     
 ##EPISODES STUFF    
 if action == 'episode_list':
+    progress_info = ''
+
+    #Convert MAL/AniList to Kitsu item.
+    if get_kitsu_item == True:
+        from resources.lib.modules import accounts
+        from resources.lib.modules import kitsu_api
+        args = json.loads(tools.unquote(actionArgs))
+        progress_info = args['account_info']
+        tools.log(progress_info, 'error')
+        kitsu_id = accounts.Mappings().get(site, args['id'], 'kitsu')
+        extracted_info = kitsu_api.KitsuBrowser().getListById([kitsu_id], progress=progress_info)[0]
+        tools.log(extracted_info, 'error')
+        actionArgs = tools.quote(json.dumps(extracted_info))
+    else:
+        args = json.loads(tools.unquote(actionArgs))
+        progress_info = args['account_info']
+    
     from resources.lib.menus import anime
-    anime.List().episode_list(actionArgs, page)   
+    anime.List().episode_list(actionArgs, page, progress_info)   
     
 ##PLAY
 if action == 'play_anime':
+    #Convert MAL/AniList to Kitsu item.
+    if get_kitsu_item == True:
+        from resources.lib.modules import accounts
+        from resources.lib.modules import kitsu_api
+        args = json.loads(tools.unquote(actionArgs))
+        kitsu_id = accounts.Mappings().get(site, args['id'], 'kitsu')
+        extracted_info = kitsu_api.KitsuBrowser().getListById([kitsu_id])[0]
+        actionArgs = tools.quote(json.dumps(extracted_info))
     #Smartplay
     if tools.getSetting('smartplay.enable') == 'true' and smart_play == False:
         from resources.lib.modules import smartplay
@@ -208,6 +240,27 @@ if action == 'my_anilist':
 if action == 'get_list':
     from resources.lib.menus import anime
     anime.List().get_list(site, list)
+    
+#Test Accounts Stuff
+if action == 'my_accounts_test':
+    from resources.lib.menus import base
+    base.List().myAccountsTest()
+    
+if action == 'my_kitsu_test':
+    from resources.lib.menus import base
+    base.List().myKitsuTest()
+    
+if action == 'my_mal_test':
+    from resources.lib.menus import base
+    base.List().myMalTest()
+    
+if action == 'my_anilist_test':
+    from resources.lib.menus import base
+    base.List().myAniListTest()
+    
+if action == 'get_list_test':
+    from resources.lib.menus import anime
+    anime.List().get_list_test(site, list)
     
 #Login
 if action == 'kitsuLogin':

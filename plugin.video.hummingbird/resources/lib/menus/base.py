@@ -21,7 +21,7 @@ class List:
         if self.last_watched:
             self.add_last_watched()
         if self.kitsu_access or self.mal_access or self.ani_access:
-            tools.addDirectoryItem('My Accounts', 'my_accounts', {'plot': 'Explore your account lists from Kitsu, MyAnimeList and AniList.', 'description': 'Explore your account lists from Kitsu, MyAnimeList and AniList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'account.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})    
+            tools.addDirectoryItem('My Accounts', 'my_accounts_test', {'plot': 'Explore your account lists from Kitsu, MyAnimeList and AniList.', 'description': 'Explore your account lists from Kitsu, MyAnimeList and AniList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'account.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})                
         tools.addDirectoryItem('Explore Anime...', 'explore_anime', {'plot': 'Explore anime on Kitsu.', 'description': 'Explore anime on Kitsu.'}, {'poster': os.path.join(tools.BASIC_PATH, 'explore_anime.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
         tools.addDirectoryItem('Search', 'title_search', {'plot': 'Search anime by title on Kitsu.', 'description': 'Search anime by title on Kitsu.'}, {'poster': os.path.join(tools.OTHER_PATH, 'search.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
         tools.addDirectoryItem('Advanced Search', 'advanced_search', {'plot': 'Search anime on Kitsu.', 'description': 'Search anime on Kitsu.'}, {'poster': os.path.join(tools.OTHER_PATH, 'advanced_search.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
@@ -207,3 +207,37 @@ class List:
  
         tools.addDirectoryItem(name, action, item, a['art'], cm=cm, isFolder=folder, isPlayable=playable, actionArgs=args)         
         
+#################################TESTS##################################
+    def myAccountsTest(self):
+        if self.kitsu_access:
+            tools.addDirectoryItem('My Kitsu - %s' % self.kitsu_user, 'my_kitsu_test', {'plot': 'Explore your lists on Kitsu.', 'description': 'Explore your lists on Kitsu.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'kitsu.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        if self.mal_access:
+            tools.addDirectoryItem('My MAL - %s' % self.mal_user, 'my_mal_test', {'plot': 'Explore your lists on MyAnimeList.', 'description': 'Explore your lists on MyAnimeList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'mal.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        if self.ani_access:
+            tools.addDirectoryItem('My AniList - %s' % self.ani_user, 'my_anilist_test', {'plot': 'Explore your lists on AniList.', 'description': 'Explore your lists on AniList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'anilist.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.closeDirectory('tvshows')    
+        
+        
+    def myKitsuTest(self):
+        tools.addDirectoryItem('Currently Watching', 'get_list_test&site=kitsu&list=current', {'plot': 'Explore currently watching anime on Kitsu.', 'description': 'Explore currently watching on Kitsu.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'kitsu.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('Finished', 'get_list_test&site=kitsu&list=finished', {'plot': 'Explore finished anime on Kitsu.', 'description': 'Explore finished on Kitsu.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'kitsu.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('Dropped', 'get_list_test&site=kitsu&list=dropped', {'plot': 'Explore dropped anime on Kitsu.', 'description': 'Explore dropped on Kitsu.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'kitsu.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('On Hold', 'get_list_test&site=kitsu&list=on_hold', {'plot': 'Explore on hold anime on Kitsu.', 'description': 'Explore on hold on Kitsu.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'kitsu.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('Planned', 'get_list_test&site=kitsu&list=planned', {'plot': 'Explore planned anime on Kitsu.', 'description': 'Explore currently watching on Kitsu.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'kitsu.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.closeDirectory('tvshows')
+
+    def myMalTest(self):
+        tools.addDirectoryItem('Currently Watching', 'get_list_test&site=mal&list=current', {'plot': 'Explore currently watching anime on MyAnimeList.', 'description': 'Explore currently watching anime on MyAnimeList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'mal.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('Finished', 'get_list_test&site=mal&list=finished', {'plot': 'Explore finished anime on MyAnimeList.', 'description': 'Explore finished anime on MyAnimeList'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'mal.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('Dropped', 'get_list_test&site=mal&list=dropped', {'plot': 'Explore dropped anime on MyAnimeList.', 'description': 'Explore dropped anime on MyAnimeList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'mal.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('On Hold', 'get_list_test&site=mal&list=on_hold', {'plot': 'Explore on hold anime on MyAnimeList.', 'description': 'Explore on hold anime on MyAnimeList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'mal.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('Planned', 'get_list_test&site=mal&list=planned', {'plot': 'Explore planned anime on MyAnimeList.', 'description': 'Explore planned anime on MyAnimeList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'mal.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.closeDirectory('tvshows')
+        
+    def myAniListTest(self):
+        tools.addDirectoryItem('Currently Watching', 'get_list_test&site=anilist&list=current', {'plot': 'Explore currently watching anime on AniList.', 'description': 'Explore currently watching anime on AniList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'anilist.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('Finished', 'get_list_test&site=anilist&list=finished', {'plot': 'Explore finished anime on AniList.', 'description': 'Explore finished anime on AniList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'anilist.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('Dropped', 'get_list_test&site=anilist&list=dropped', {'plot': 'Explore dropped anime on AniList.', 'description': 'Explore dropped anime on AniList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'anilist.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('On Hold', 'get_list_test&site=anilist&list=on_hold', {'plot': 'Explore on hold anime on AniList.', 'description': 'Explore on hold anime on AniList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'anilist.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.addDirectoryItem('Planned', 'get_list_test&site=anilist&list=planned', {'plot': 'Explore planned anime on AniList.', 'description': 'Explore planned anime on AniList.'}, {'poster': os.path.join(tools.ACCOUNTS_PATH, 'anilist.png'), 'fanart': os.path.join(tools.MEDIA_PATH, 'fanart.jpg')})
+        tools.closeDirectory('tvshows')

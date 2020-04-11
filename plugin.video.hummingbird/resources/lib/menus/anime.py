@@ -407,10 +407,10 @@ class List:
         tools.closeDirectory('tvshows')  
 
     #Episodes
-    def episode_list(self, args, page):
+    def episode_list(self, args, page, progress):
         show_info = json.loads(tools.unquote(args))
         episodes = kitsu_api.KitsuBrowser().all_episodes(id=show_info['id'])
-        self.episode_list_builder(show_info, episodes)
+        self.episode_list_builder(show_info, episodes, progress)
         tools.closeDirectory('episodes')
         
     def franchise(self, args, page):
@@ -426,6 +426,63 @@ class List:
         anime = accounts.Lists().get(site, list)
         self.list_builder(anime)
         tools.closeDirectory('tvshows')
+        
+    def get_list_test(self, site, list):
+        from resources.lib.modules import accounts_test as accounts
+        anime = accounts.Lists().get(site, list)
+        if site ==  'kitsu':
+            self.list_builder(anime)
+        else:
+            self.list_builder_alt(anime, site)
+        tools.closeDirectory('tvshows')
+        
+    def list_builder_alt(self, anime, site):
+        for a in anime:
+            name_choice = tools.getSetting('show.titles')
+            name = a['titles']['base']
+            if name_choice == 'English':
+                name = a['titles']['english']
+            elif name_choice == 'Kanji':
+                name = a['titles']['japanese']
+            
+            if name is None:
+                name = a['titles']['canon']
+                
+            if a['titles']['japanese'] is not None:
+                originaltitle = a['titles']['japanese'].encode('utf-8')
+            else:
+                originaltitle = ''      
+                
+            duration = 1
+
+            item = {'plot': a['plot'],
+                    'genre': a['genres'],
+                    'year': a['year'],
+                    'originaltitle': originaltitle,
+                    'duration': str(duration*60),
+                    'country': 'Japan'}       
+
+            if a['subtype'] == 'Movie':
+                action = 'play_anime&get_anime_info=true&site=%s' % site
+                folder = False
+                playable = True
+                cm = [('Source Select', 'PlayMedia(%s?action=play_anime&source_select=true&actionArgs=%s)' % (sysaddon, tools.quote(json.dumps(a, sort_keys=True))))]
+                item['mediatype'] = 'movie'
+                item['title'] = name
+            else:
+                action = 'episode_list&get_anime_info=true&site=%s' % site
+                folder = True
+                playable = False
+                cm = []
+                item['mediatype'] = 'tvshow'
+                item['tvshowtitle'] = name
+                item['status'] = a['status']
+
+            args = tools.quote(json.dumps(a, sort_keys=True))
+            
+            art = {'poster': a['picture']}
+ 
+            tools.addDirectoryItem(name, action, item, art, cm=cm, isFolder=folder, isPlayable=playable, actionArgs=args)                     
     
     #List Builder
     def list_builder(self, anime):
@@ -503,7 +560,7 @@ class List:
  
             tools.addDirectoryItem(name, action, item, a['art'], cm=cm, isFolder=folder, isPlayable=playable, actionArgs=args) 
             
-    def episode_list_builder(self, show, episode_list, smartPlay=False, sourceSelect=False, audioType=False):
+    def episode_list_builder(self, show, episode_list, progress=False, smartPlay=False, sourceSelect=False, audioType=False):
         reverse = tools.getSetting('ep.reverse')
         shownum = tools.getSetting('ep.number')
         
@@ -517,6 +574,9 @@ class List:
         index = 0
         
         smartplay_list = []
+        
+        try: progress = show['account_info']['progress']
+        except: progress = 0
     
         for a in ep_list:
             name_choice = tools.getSetting('ep.titles')
@@ -550,7 +610,13 @@ class List:
                     'premiered': a['airdate'],
                     'year': a['year'], 
                     'mediatype': 'episode', 
-                    'duration': duration}
+                    'duration': duration,
+                    'episode': int(a['episodeNumber'])}
+            
+            if int(a['episodeNumber']) <= progress:
+                 item['playcount'] = 1
+            else:
+                 item['playcount'] = 0
             
             poster = a['thumbnail']
             
